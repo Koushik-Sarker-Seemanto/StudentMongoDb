@@ -26,17 +26,17 @@ namespace StudentMongoDB
                 {
                     break;
                 }
-                if (option == 1)
+                switch (option)
                 {
-                    teacherConsole.TeacherTask();
-                }
-                else if (option == 2)
-                {
-                    studentConsole.StudentTask();
-                }
-                else
-                {
-                    Console.WriteLine("invalid input");
+                    case 1:
+                        teacherConsole.TeacherTask();
+                        break;
+                    case 2:
+                        studentConsole.StudentTask();
+                        break;
+                    default:
+                        Console.WriteLine("invalid input");
+                        break;
                 }
             }
         }

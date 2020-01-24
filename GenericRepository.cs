@@ -10,7 +10,6 @@ namespace StudentMongoDB
     {
         private readonly IMongoCollection<T> _collection;
 
-        // private static Repository _instance;
         public GenericRepository(string collectionName)
         {
             IMongoClient client = new MongoClient();

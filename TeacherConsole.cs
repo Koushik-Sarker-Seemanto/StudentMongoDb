@@ -8,8 +8,6 @@ namespace StudentMongoDB
     {
         public void TeacherTask()
         {
-            //var teacherRepository = new GenericRepository<Teacher>(new AppDbContext(new DbContextOptions<AppDbContext>() ));
-            //Repository teacherRepository = new Repository("Teacher");
             GenericRepository<Teacher> teacherRepository = new GenericRepository<Teacher>("Teacher");
             while (true)
             {
@@ -27,51 +25,54 @@ namespace StudentMongoDB
                 {
                     break;
                 }
-                if (option == 1)
+                switch (option)
                 {
-                    IEnumerable<Teacher> allTeachers = teacherRepository.GetAll();
-                    // IEnumerable<Teacher> allTeachers = teacherRepository.GetAllStudents<Teacher>();
-                    Console.WriteLine("Teacher Table: ");
-                    foreach (var i in allTeachers)
+                    case 1:
                     {
-                        Console.WriteLine("ID: "+i.Id + "\tName: " + i.Name + "\tDept: " + i.Dept+"\tType: "+i.Type);
+                        IEnumerable<Teacher> allTeachers = teacherRepository.GetAll();
+                        Console.WriteLine("Teacher Table: ");
+                        foreach (var i in allTeachers)
+                        {
+                            Console.WriteLine("ID: "+i.Id + "\tName: " + i.Name + "\tDept: " + i.Dept+"\tType: "+i.Type);
+                        }
+
+                        break;
                     }
-                }
-                else if (option == 2)
-                {
-                    Console.WriteLine("Enter the id:");
-                    string id = (Console.ReadLine());
-                    Teacher newTeacher = teacherRepository.GetById(id);
-                    // Teacher newTeacher = teacherRepository.GetStudentById<Teacher>(id);
-                    Console.WriteLine("ID: "+newTeacher.Id + "\tName: " + newTeacher.Name + "\tDept: " + newTeacher.Dept+"\tType: "+newTeacher.Type);
-                }
-                else if (option == 3)
-                {
-                    Teacher teacher = GetTeacher();
-                    Teacher newTeacher = teacherRepository.Insert(teacher);
-                    Console.WriteLine(newTeacher.Name+" Inserted");
-                    // teacherRepository.InsertStudent<Teacher>(teacher);
-                }
-                else if (option == 4)
-                {
-                    Console.WriteLine("Enter The Id (For Update): ");
-                    string id = Console.ReadLine();
-                    Teacher teacher = GetTeacher();
-                    Teacher newTeacher = teacherRepository.Update(teacher, id);
-                    Console.WriteLine(newTeacher.Name+" Updated");
-                    // teacherRepository.UpdateStudent<Teacher>(teacher, id);
-                }
-                else if (option == 5)
-                {
-                    Console.WriteLine("Enter The Id (For Delete): ");
-                    string id = Console.ReadLine();
-                    Teacher teacher = teacherRepository.Delete(id);
-                    Console.WriteLine(teacher.Name + " deleted");
-                    // teacherRepository.DeleteStudent<Teacher>(id);
-                }
-                else
-                {
-                    Console.WriteLine("invalid input");
+                    case 2:
+                    {
+                        Console.WriteLine("Enter the id:");
+                        string id = (Console.ReadLine());
+                        Teacher newTeacher = teacherRepository.GetById(id);
+                        Console.WriteLine("ID: "+newTeacher.Id + "\tName: " + newTeacher.Name + "\tDept: " + newTeacher.Dept+"\tType: "+newTeacher.Type);
+                        break;
+                    }
+                    case 3:
+                    {
+                        Teacher teacher = GetTeacher();
+                        Teacher newTeacher = teacherRepository.Insert(teacher);
+                        Console.WriteLine(newTeacher.Name+" Inserted");
+                        break;
+                    }
+                    case 4:
+                    {
+                        Console.WriteLine("Enter The Id (For Update): ");
+                        string id = Console.ReadLine();
+                        Teacher teacher = GetTeacher();
+                        Teacher newTeacher = teacherRepository.Update(teacher, id);
+                        Console.WriteLine(newTeacher.Name+" Updated");
+                        break;
+                    }
+                    case 5:
+                    {
+                        Console.WriteLine("Enter The Id (For Delete): ");
+                        string id = Console.ReadLine();
+                        Teacher teacher = teacherRepository.Delete(id);
+                        Console.WriteLine(teacher.Name + " deleted");
+                        break;
+                    }
+                    default:
+                        Console.WriteLine("invalid input");
+                        break;
                 }
             }
         }

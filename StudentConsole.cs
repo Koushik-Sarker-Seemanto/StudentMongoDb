@@ -25,46 +25,54 @@ namespace StudentMongoDB
                 {
                     break;
                 }
-                if (option == 1)
+                switch (option)
                 {
-                    IEnumerable<Student> allStudent = studentRepository.GetAll();
-                    Console.WriteLine("Student Table: ");
-                    foreach (var i in allStudent)
+                    case 1:
                     {
-                        Console.WriteLine("ID: "+i.Id + "\tName: " + i.Name + "\tDept: " + i.Dept);
+                        IEnumerable<Student> allStudent = studentRepository.GetAll();
+                        Console.WriteLine("Student Table: ");
+                        foreach (var i in allStudent)
+                        {
+                            Console.WriteLine("ID: "+i.Id + "\tName: " + i.Name + "\tDept: " + i.Dept);
+                        }
+
+                        break;
                     }
-                }
-                else if (option == 2)
-                {
-                    Console.WriteLine("Enter the id:");
-                    string id = (Console.ReadLine());
-                    Student newStudent = studentRepository.GetById(id);
-                    Console.WriteLine("ID: "+newStudent.Id + "\tName: " + newStudent.Name + "\tDept: " + newStudent.Dept);
-                }
-                else if (option == 3)
-                {
-                    Student student = GetStudent();
-                    studentRepository.Insert(student);
-                    Console.WriteLine(student.Name+" Added");
-                }
-                else if (option == 4)
-                {
-                    Console.WriteLine("Enter The Id (For Update): ");
-                    string id = Console.ReadLine();
-                    Student student = GetStudent();
-                    Student newStudent = studentRepository.Update(student, id);
-                    Console.WriteLine(student.Name+" Updated");
-                }
-                else if (option == 5)
-                {
-                    Console.WriteLine("Enter The Id (For Delete): ");
-                    string id = Console.ReadLine();
-                    Student student = studentRepository.Delete(id);
-                    Console.WriteLine(student.Name+" Deleted");
-                }
-                else
-                {
-                    Console.WriteLine("invalid input");
+                    case 2:
+                    {
+                        Console.WriteLine("Enter the id:");
+                        string id = (Console.ReadLine());
+                        Student newStudent = studentRepository.GetById(id);
+                        Console.WriteLine("ID: "+newStudent.Id + "\tName: " + newStudent.Name + "\tDept: " + newStudent.Dept);
+                        break;
+                    }
+                    case 3:
+                    {
+                        Student student = GetStudent();
+                        studentRepository.Insert(student);
+                        Console.WriteLine(student.Name+" Added");
+                        break;
+                    }
+                    case 4:
+                    {
+                        Console.WriteLine("Enter The Id (For Update): ");
+                        string id = Console.ReadLine();
+                        Student student = GetStudent();
+                        Student newStudent = studentRepository.Update(student, id);
+                        Console.WriteLine(student.Name+" Updated");
+                        break;
+                    }
+                    case 5:
+                    {
+                        Console.WriteLine("Enter The Id (For Delete): ");
+                        string id = Console.ReadLine();
+                        Student student = studentRepository.Delete(id);
+                        Console.WriteLine(student.Name+" Deleted");
+                        break;
+                    }
+                    default:
+                        Console.WriteLine("invalid input");
+                        break;
                 }
             }
         }
