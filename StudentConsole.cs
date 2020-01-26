@@ -8,7 +8,7 @@ namespace StudentMongoDB
         public void StudentTask()
         {
             // Repository studentRepository = new Repository("Student");
-            GenericRepository<Student> studentRepository = new GenericRepository<Student>("Student");
+            GenericRepository<Student> studentRepository = new GenericRepository<Student>();
             while (true)
             {
                 Console.WriteLine("-------------------------------------");
